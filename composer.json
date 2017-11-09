@@ -1,0 +1,25 @@
+{
+  "name": "setbased/abc-web-assets",
+  "description": "ABC-Framework: Web Assets",
+  "keywords": [
+    "ABC-Framework",
+    "Web Assets"
+  ],
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SetBased\\Abc\\WebAssets\\": "src/"
+    }
+  },
+  "require-dev": {
+    "phing/phing": "^2.0.0",
+    "phpunit/phpunit": "^6.0.0"
+  },
+  "config": {
+    "bin-dir": "bin/"
+  }
+}
