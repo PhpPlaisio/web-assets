@@ -1,5 +1,5 @@
 <?php
-//----------------------------------------------------------------------------------------------------------------------
+
 namespace SetBased\Abc\WebAssets;
 
 /**
@@ -21,7 +21,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function appendPageTitle($pageTitleAddendum);
+  public function appendPageTitle(?string $pageTitleAddendum): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -35,18 +35,18 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function cssAppendClassSpecificSource($className, $media = null);
+  public function cssAppendClassSpecificSource(string $className, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
    * Adds a line with a CSS snippet to the internal CSS.
    *
-   * @param string $cssLine The line with CSS snippet.
+   * @param string|null $cssLine The line with CSS snippet.
    *
    * @api
    * @since 1.0.0
    */
-  public function cssAppendLine($cssLine);
+  public function cssAppendLine(?string $cssLine): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -59,7 +59,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function cssAppendSource($url, $media = null);
+  public function cssAppendSource(string $url, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -72,7 +72,7 @@ interface WebAssets
    *
    * @return string
    */
-  public function cssClassNameToRootRelativeUrl($className, $media = null);
+  public function cssClassNameToRootRelativeUrl(string $className, ?string $media = null): string;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -84,7 +84,7 @@ interface WebAssets
    * @param string|null $media The media for which the CSS source is optimized for. Note: use null for 'all'
    *                           devices; null is preferred over 'all'.
    */
-  public function cssOptimizedAppendSource($url, $media = null);
+  public function cssOptimizedAppendSource(string $url, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -93,7 +93,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function echoCascadingStyleSheets();
+  public function echoCascadingStyleSheets(): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -102,7 +102,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function echoJavaScript();
+  public function echoJavaScript(): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -111,7 +111,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function echoMetaTags();
+  public function echoMetaTags(): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -124,7 +124,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function echoPageTitle();
+  public function echoPageTitle(): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -139,7 +139,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function getPageTitle();
+  public function getPageTitle(): string;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -157,7 +157,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function jsAdmClassSpecificFunctionCall($className, $jsFunctionName, $args = []);
+  public function jsAdmClassSpecificFunctionCall(string $className, string $jsFunctionName, array $args = []): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -170,7 +170,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function jsAdmFunctionCall($namespace, $jsFunctionName, $args = []);
+  public function jsAdmFunctionCall(string $namespace, string $jsFunctionName, array $args = []): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -180,7 +180,7 @@ interface WebAssets
    * @param string $jsFunctionName The function name inside the namespace.
    * @param array  $args           The optional arguments for the function.
    */
-  public function jsAdmOptimizedFunctionCall($namespace, $jsFunctionName, $args = []);
+  public function jsAdmOptimizedFunctionCall(string $namespace, string $jsFunctionName, array $args = []): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -191,7 +191,7 @@ interface WebAssets
    *
    * @param string $mainJsScript The main script for RequireJS.
    */
-  public function jsAdmOptimizedSetPageSpecificMain($mainJsScript);
+  public function jsAdmOptimizedSetPageSpecificMain(string $mainJsScript): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -206,7 +206,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function jsAdmSetPageSpecificMain($className);
+  public function jsAdmSetPageSpecificMain(string $className): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -217,7 +217,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function metaAddElement($attributes);
+  public function metaAddElement(array $attributes): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -228,7 +228,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function metaAddKeyword($keyword);
+  public function metaAddKeyword(string $keyword): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -239,7 +239,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function metaAddKeywords($keywords);
+  public function metaAddKeywords(array $keywords): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -254,7 +254,7 @@ interface WebAssets
    * @api
    * @since 1.0.0
    */
-  public function setPageTitle($pageTitle);
+  public function setPageTitle(?string $pageTitle): void;
 
   //--------------------------------------------------------------------------------------------------------------------
 }
