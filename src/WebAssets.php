@@ -1,6 +1,7 @@
 <?php
+declare(strict_types=1);
 
-namespace SetBased\Abc\WebAssets;
+namespace Plaisio\WebAssets;
 
 /**
  * Interface for classes for setting web assets (things like CSS, JavaScript and image files) and generating HTML code

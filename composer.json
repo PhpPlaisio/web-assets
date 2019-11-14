@@ -1,23 +1,18 @@
 {
-  "name": "setbased/abc-web-assets",
-  "description": "ABC-Framework: Web Assets",
+  "name": "plaisio/web-assets",
+  "description": "PhpPlaisio: Web Assets",
   "keywords": [
-    "ABC-Framework",
+    "PhpPlaisio",
     "Web Assets"
   ],
+  "license": "MIT",
   "require": {
     "php": ">=7.1.0"
   },
-  "type": "library",
-  "license": "MIT",
   "autoload": {
     "psr-4": {
-      "SetBased\\Abc\\WebAssets\\": "src/"
+      "Plaisio\\WebAssets\\": "src/"
     }
-  },
-  "require-dev": {
-    "phing/phing": "^2.0.0",
-    "phpunit/phpunit": "^6.0.0"
   },
   "config": {
     "bin-dir": "bin/"
