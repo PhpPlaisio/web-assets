@@ -1,0 +1,9 @@
+<kernel>
+    <properties>
+        <property>
+            <type>\Plaisio\WebAssets\WebAssets</type>
+            <name>assets</name>
+            <description>The helper object for web assets.</description>
+        </property>
+    </properties>
+</kernel>
