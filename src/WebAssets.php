@@ -15,28 +15,14 @@ interface WebAssets
    *
    * @param string|null $pageTitleAddendum The string to eb append to the page title.
    *
-   * @see echoPageTitle()
-   * @see getPageTitle()
-   * @see setPageTitle()
+   * @see   echoPageTitle()
+   * @see   getPageTitle()
+   * @see   setPageTitle()
    *
    * @api
    * @since 1.0.0
    */
   public function appendPageTitle(?string $pageTitleAddendum): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Adds a class specific CCS file to the page.
-   *
-   * @param string      $className The PHP class name, i.e. __CLASS__. Backslashes will be translated to forward
-   *                               slashes to construct the filename relative to the resource root of the CSS source.
-   * @param string|null $media     The media for which the CSS source is optimized for. Note: use null for 'all'
-   *                               devices; null is preferred over 'all'.
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function cssAppendClassSpecificSource(string $className, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -53,27 +39,21 @@ interface WebAssets
   /**
    * Adds a CCS file to the header to the page.
    *
-   * @param string      $url   The URL to the CSS source.
-   * @param string|null $media The media for which the CSS source is optimized for. Note: use null for 'all' devices;
-   *                           null is preferred over 'all'.
+   * @param string      $location The location to the CSS source. One of:
+   *                              <ul>
+   *                              <li> A relative of absolute URL.
+   *                              <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              </ul>
+   *                              When a class name is given, backslashes will be translated to forward slashes to
+   *                              construct the filename relative to the resource root of the CSS source.
+   * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all' devices;
+   *                              null is preferred over 'all'.
    *
    * @api
    * @since 1.0.0
    */
-  public function cssAppendSource(string $url, ?string $media = null): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Returns the relative URL for a class specific CSS file.
-   *
-   * @param string      $className The PHP class name, i.e. __CLASS__. Backslashes will be translated to forward
-   *                               slashes to construct the filename relative to the resource root of the CSS source.
-   * @param string|null $media     The media for which the CSS source is optimized for. Note: use null for 'all'
-   *                               devices; null is preferred over 'all'.
-   *
-   * @return string
-   */
-  public function cssClassNameToRootRelativeUrl(string $className, ?string $media = null): string;
+  public function cssAppendSource(string $location, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -118,9 +98,9 @@ interface WebAssets
   /**
    * Echos the HTML element for the page title.
    *
-   * @see appendPageTitle()
-   * @see getPageTitle()
-   * @see setPageTitle()
+   * @see   appendPageTitle()
+   * @see   getPageTitle()
+   * @see   setPageTitle()
    *
    * @api
    * @since 1.0.0
@@ -133,9 +113,9 @@ interface WebAssets
    *
    * @return string
    *
-   * @see appendPageTitle()
-   * @see echoPageTitle()
-   * @see setPageTitle()
+   * @see   appendPageTitle()
+   * @see   echoPageTitle()
+   * @see   setPageTitle()
    *
    * @api
    * @since 1.0.0
@@ -144,34 +124,23 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Using RequiresJS calls a function in the same namespace as the PHP class (where backslashes will be translated to
-   * forward slashes). Example:
-   * ```
-   * $this->jsAdmPageSpecificFunctionCall(__CLASS__, 'init');
-   * ```
-   *
-   * @param string $className      The PHP class name, i.e. __CLASS__. Backslashes will be translated to forward slashes
-   *                               to construct the namespace.
-   * @param string $jsFunctionName The function name inside the namespace.
-   * @param array  $args           The optional arguments for the function.
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function jsAdmClassSpecificFunctionCall(string $className, string $jsFunctionName, array $args = []): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
    * Using RequiresJS calls a function in a namespace.
    *
-   * @param string $namespace      The namespace as in RequireJS.
+   * @param string $name           One of:
+   *                               <ul>
+   *                               <li> The namespace as in RequireJS as a single or double quoted string literal.
+   *                               <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                               <li> Name of a class specified by the ::class resolution operator.
+   *                               </ul>
+   *                               When a class name is given, backslashes will be translated to forward slashes to
+   *                               construct the namespace as in RequireJS.
    * @param string $jsFunctionName The function name inside the namespace.
    * @param array  $args           The optional arguments for the function.
    *
    * @api
    * @since 1.0.0
    */
-  public function jsAdmFunctionCall(string $namespace, string $jsFunctionName, array $args = []): void;
+  public function jsAdmFunctionCall(string $name, string $jsFunctionName, array $args = []): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -201,13 +170,19 @@ interface WebAssets
    * $this->jsAdmSetPageSpecificMain(__CLASS__);
    * ```
    *
-   * @param string $className The PHP cass name, i.e. __CLASS__. Backslashes will be translated to forward slashes to
-   *                          construct the namespace.
+   * @param string $name One of:
+   *                          <ul>
+   *                          <li> The namespace as in RequireJS as a single or double quoted string literal.
+   *                          <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                          <li> Name of a class specified by the ::class resolution operator.
+   *                          </ul>
+   *                          When a class name is given, backslashes will be translated to forward slashes to
+   *                          construct the namespace as in RequireJS.
    *
    * @api
    * @since 1.0.0
    */
-  public function jsAdmSetPageSpecificMain(string $className): void;
+  public function jsAdmSetPageSpecificMain(string $name): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -248,9 +223,9 @@ interface WebAssets
    *
    * @param string|null $pageTitle The new title of the page.
    *
-   * @see appendPageTitle()
-   * @see echoPageTitle()
-   * @see getPageTitle()
+   * @see   appendPageTitle()
+   * @see   echoPageTitle()
+   * @see   getPageTitle()
    *
    * @api
    * @since 1.0.0
