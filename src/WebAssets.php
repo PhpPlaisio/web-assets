@@ -13,20 +13,21 @@ interface WebAssets
   /**
    * Appends with a separator a string to the page title.
    *
-   * @param string|null $pageTitleAddendum The string to eb append to the page title.
+   * @param string|null $postfix The string to be append to the page title.
    *
    * @see   echoPageTitle()
    * @see   getPageTitle()
+   * @see   pushPageTitle()
    * @see   setPageTitle()
    *
    * @api
    * @since 1.0.0
    */
-  public function appendPageTitle(?string $pageTitleAddendum): void;
+  public function appendPageTitle(?string $postfix): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Adds a line with a CSS snippet to the internal CSS.
+   * Appends a line with a CSS snippet at the end of the internal CSS.
    *
    * @param string|null $cssLine The line with CSS snippet.
    *
@@ -37,17 +38,19 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Adds a CCS file to the header to the page.
+   * Appends a CCS file at the end of the list of CSS files in the header of the page.
    *
    * @param string      $location The location to the CSS source. One of:
    *                              <ul>
    *                              <li> A relative of absolute URL.
    *                              <li> The __CLASS__ or __TRAIT__ magical constant.
-   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              <li> Name of a class specified by the ::class resolution operator.
    *                              </ul>
-   *                              When a class name is given, backslashes will be translated to forward slashes to
-   *                              construct the filename relative to the resource root of the CSS source.
-   * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all' devices;
+   *                              When a class name is given, backslashes will be translated to forward slashes and
+   *                              extension .css will be added to construct the filename relative to the resource root
+   *                              of CSS sources.
+   * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all'
+   *                              devices;
    *                              null is preferred over 'all'.
    *
    * @api
@@ -57,15 +60,103 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Adds an optimized CCS file to the page.
+   * Appends a list of CCS files at the end of the list of CSS files in the header of the page.
    *
-   * Do not use this method directly. Use {@link cssAppendPageSpecificSource} instead.
+   * @param string      $location The location to the CSS source. One of:
+   *                              <ul>
+   *                              <li> A relative URL.
+   *                              <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              </ul>
+   *                              When a class name is given, backslashes will be translated to forward slashes and
+   *                              extension .txt will be added to construct the filename relative to the resource root
+   *                              of CSS sources.
+   * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all'
+   *                              devices;
+   *                              null is preferred over 'all'.
+   *
+   * @api
+   * @since 1.0.0
+   */
+  public function cssAppendSourcesList(string $location, ?string $media = null): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Appends an optimized CCS file at the end of the list of CSS files in the header of the page.
+   *
+   * Do not use this method directly. Use {@link cssAppendSource} instead.
    *
    * @param string      $url   The URL to the CSS source.
    * @param string|null $media The media for which the CSS source is optimized for. Note: use null for 'all'
    *                           devices; null is preferred over 'all'.
    */
   public function cssOptimizedAppendSource(string $url, ?string $media = null): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Pushes an optimized CCS file at the beginning of the list of CSS files in the header of the page.
+   *
+   * Do not use this method directly. Use {@link cssPushSource} instead.
+   *
+   * @param string      $url   The URL to the CSS source.
+   * @param string|null $media The media for which the CSS source is optimized for. Note: use null for 'all'
+   *                           devices; null is preferred over 'all'.
+   */
+  public function cssOptimizedPushSource(string $url, ?string $media = null): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Pushes a line with a CSS snippet at the beginning of the internal CSS.
+   *
+   * @param string|null $cssLine The line with CSS snippet.
+   *
+   * @api
+   * @since 2.0.0
+   */
+  public function cssPushLine(?string $cssLine): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Pushes a CCS file at the beginning of the list of CSS files in the header of the page.
+   *
+   * @param string      $location The location to the CSS source. One of:
+   *                              <ul>
+   *                              <li> A relative of absolute URL.
+   *                              <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              </ul>
+   *                              When a class name is given, backslashes will be translated to forward slashes and
+   *                              extension .css will be added to construct the filename relative to the resource root
+   *                              of CSS sources.
+   * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all'
+   *                              devices;
+   *                              null is preferred over 'all'.
+   *
+   * @api
+   * @since 2.0.0
+   */
+  public function cssPushSource(string $location, ?string $media = null): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Pushes a CCS list of files at the beginning of the list of CSS files in the header of the page.
+   *
+   * @param string      $location The location to the CSS source. One of:
+   *                              <ul>
+   *                              <li> A filename relative to the resource root with extension .txt.
+   *                              <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              </ul>
+   *                              When a class name is given, backslashes will be translated to forward slashes and
+   *                              extension .txt will be added to construct the filename relative to the resource root
+   *                              of CSS sources.
+   * @param string|null $media    The media for which the CSS sources are optimized for. Note: use null for 'all'
+   *                              devices; null is preferred over 'all'.
+   *
+   * @api
+   * @since 2.0.0
+   */
+  public function cssPushSourceList(string $location, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -100,6 +191,7 @@ interface WebAssets
    *
    * @see   appendPageTitle()
    * @see   getPageTitle()
+   * @see   pushPageTitle()
    * @see   setPageTitle()
    *
    * @api
@@ -115,6 +207,7 @@ interface WebAssets
    *
    * @see   appendPageTitle()
    * @see   echoPageTitle()
+   * @see   pushPageTitle()
    * @see   setPageTitle()
    *
    * @api
@@ -161,16 +254,16 @@ interface WebAssets
    *
    * @param string $mainJsScript The main script for RequireJS.
    */
-  public function jsAdmOptimizedSetPageSpecificMain(string $mainJsScript): void;
+  public function jsAdmOptimizedSetMain(string $mainJsScript): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets a page specific main for RequireJS. Example:
+   * Sets a main for RequireJS. Example:
    * ```
-   * $this->jsAdmSetPageSpecificMain(__CLASS__);
+   * $this->jsAdmSetMain(__CLASS__);
    * ```
    *
-   * @param string $name One of:
+   * @param string $name      One of:
    *                          <ul>
    *                          <li> The namespace as in RequireJS as a single or double quoted string literal.
    *                          <li> The __CLASS__ or __TRAIT__ magical constant.
@@ -180,9 +273,29 @@ interface WebAssets
    *                          construct the namespace as in RequireJS.
    *
    * @api
-   * @since 1.0.0
+   * @since 2.0.0
    */
-  public function jsAdmSetPageSpecificMain(string $name): void;
+  public function jsAdmSetMain(string $name): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Sets a main for RequireJS. Example:
+   * ```
+   * $this->jsAdmSetPageSpecificMain(__CLASS__);
+   * ```
+   *
+   * @param string $location  One of:
+   *                          <ul>
+   *                          <li> The namespace as in RequireJS as a single or double quoted string literal.
+   *                          <li> The __CLASS__ or __TRAIT__ magical constant.
+   *                          <li> Name of a class specified by the ::class resolution operator.
+   *                          </ul>
+   *                          When a class name is given, backslashes will be translated to forward slashes to
+   *                          construct the namespace as in RequireJS.
+   *
+   * @deprecated Use {@see jsAdmSetMain} instead.
+   */
+  public function jsAdmSetPageSpecificMain(string $location): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
@@ -219,18 +332,35 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets title of the page.
+   * Pushes with a separator a string to the page title.
    *
-   * @param string|null $pageTitle The new title of the page.
+   * @param string|null $prefix The string to be prepended to the page title.
    *
    * @see   appendPageTitle()
    * @see   echoPageTitle()
    * @see   getPageTitle()
+   * @see   setPageTitle()
+   *
+   * @api
+   * @since 2.0.0
+   */
+  public function pushPageTitle(?string $prefix): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Sets the title of the page.
+   *
+   * @param string|null $title The new title of the page.
+   *
+   * @see   appendPageTitle()
+   * @see   echoPageTitle()
+   * @see   getPageTitle()
+   * @see   pushPageTitle()
    *
    * @api
    * @since 1.0.0
    */
-  public function setPageTitle(?string $pageTitle): void;
+  public function setPageTitle(?string $title): void;
 
   //--------------------------------------------------------------------------------------------------------------------
 }
