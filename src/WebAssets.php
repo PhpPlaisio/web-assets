@@ -66,14 +66,12 @@ interface WebAssets
    *                              <ul>
    *                              <li> A relative URL.
    *                              <li> The __CLASS__ or __TRAIT__ magical constant.
-   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              <li> Name of a class specified by the ::class resolution operator.
    *                              </ul>
    *                              When a class name is given, backslashes will be translated to forward slashes and
-   *                              extension .txt will be added to construct the filename relative to the resource root
-   *                              of CSS sources.
+   *                              extension .txt will be added to construct the filename relative to the resource root.
    * @param string|null $media    The media for which the CSS source is optimized for. Note: use null for 'all'
-   *                              devices;
-   *                              null is preferred over 'all'.
+   *                              devices; null is preferred over 'all'.
    *
    * @api
    * @since 1.0.0
@@ -145,7 +143,7 @@ interface WebAssets
    *                              <ul>
    *                              <li> A filename relative to the resource root with extension .txt.
    *                              <li> The __CLASS__ or __TRAIT__ magical constant.
-   *                              <li> Name of a class with specified by the ::class resolution operator.
+   *                              <li> Name of a class specified by the ::class resolution operator.
    *                              </ul>
    *                              When a class name is given, backslashes will be translated to forward slashes and
    *                              extension .txt will be added to construct the filename relative to the resource root
@@ -156,7 +154,7 @@ interface WebAssets
    * @api
    * @since 2.0.0
    */
-  public function cssPushSourceList(string $location, ?string $media = null): void;
+  public function cssPushSourcesList(string $location, ?string $media = null): void;
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
