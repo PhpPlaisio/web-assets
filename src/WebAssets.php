@@ -13,9 +13,9 @@ interface WebAssets
   /**
    * Appends with a separator a string to the page title.
    *
-   * @param string|null $postfix The string to be append to the page title.
+   * @param string|null $postfix The string to be appended to the page title.
    *
-   * @see   echoPageTitle()
+   * @see   structPageTitle()
    * @see   getPageTitle()
    * @see   pushPageTitle()
    * @see   setPageTitle()
@@ -158,53 +158,12 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Echos the links to external and internal CSS.
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function echoCascadingStyleSheets(): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Echos JavaScript code that will be executed using RequireJS.
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function echoJavaScript(): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Echos the meta tags within the HTML document.
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function echoMetaTags(): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
-   * Echos the HTML element for the page title.
-   *
-   * @see   appendPageTitle()
-   * @see   getPageTitle()
-   * @see   pushPageTitle()
-   * @see   setPageTitle()
-   *
-   * @api
-   * @since 1.0.0
-   */
-  public function echoPageTitle(): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
    * Returns the page title.
    *
    * @return string
    *
    * @see   appendPageTitle()
-   * @see   echoPageTitle()
+   * @see   structPageTitle()
    * @see   pushPageTitle()
    * @see   setPageTitle()
    *
@@ -263,7 +222,7 @@ interface WebAssets
    *
    * @param string $name      One of:
    *                          <ul>
-   *                          <li> The namespace as in RequireJS as a single or double quoted string literal.
+   *                          <li> The namespace as in RequireJS as a single or double-quoted string literal.
    *                          <li> The __CLASS__ or __TRAIT__ magical constant.
    *                          <li> Name of a class specified by the ::class resolution operator.
    *                          </ul>
@@ -284,7 +243,7 @@ interface WebAssets
    *
    * @param string $location  One of:
    *                          <ul>
-   *                          <li> The namespace as in RequireJS as a single or double quoted string literal.
+   *                          <li> The namespace as in RequireJS as a single or double-quoted string literal.
    *                          <li> The __CLASS__ or __TRAIT__ magical constant.
    *                          <li> Name of a class specified by the ::class resolution operator.
    *                          </ul>
@@ -335,7 +294,7 @@ interface WebAssets
    * @param string|null $prefix The string to be prepended to the page title.
    *
    * @see   appendPageTitle()
-   * @see   echoPageTitle()
+   * @see   structPageTitle()
    * @see   getPageTitle()
    * @see   setPageTitle()
    *
@@ -351,7 +310,7 @@ interface WebAssets
    * @param string|null $title The new title of the page.
    *
    * @see   appendPageTitle()
-   * @see   echoPageTitle()
+   * @see   structPageTitle()
    * @see   getPageTitle()
    * @see   pushPageTitle()
    *
@@ -359,6 +318,47 @@ interface WebAssets
    * @since 1.0.0
    */
   public function setPageTitle(?string $title): void;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Returns the structure of the links to external and internal CSS.
+   *
+   * @api
+   * @since 3.0.0
+   */
+  public function structCascadingStyleSheets(): ?array;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Returns the structure of the JavaScript code that will be placed at the end of the page.
+   *
+   * @api
+   * @since 3.0.0
+   */
+  public function structJavaScript(): ?array;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Returns the structure of the meta tags.
+   *
+   * @api
+   * @since 3.0.0
+   */
+  public function structMetaTags(): ?array;
+
+  //--------------------------------------------------------------------------------------------------------------------
+  /**
+   * Returns the structure of the title.
+   *
+   * @see   appendPageTitle()
+   * @see   getPageTitle()
+   * @see   pushPageTitle()
+   * @see   setPageTitle()
+   *
+   * @api
+   * @since 3.0.0
+   */
+  public function structPageTitle(): ?array;
 
   //--------------------------------------------------------------------------------------------------------------------
 }
