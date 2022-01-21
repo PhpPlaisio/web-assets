@@ -236,26 +236,6 @@ interface WebAssets
 
   //--------------------------------------------------------------------------------------------------------------------
   /**
-   * Sets a main for RequireJS. Example:
-   * ```
-   * $this->jsAdmSetPageSpecificMain(__CLASS__);
-   * ```
-   *
-   * @param string $location  One of:
-   *                          <ul>
-   *                          <li> The namespace as in RequireJS as a single or double-quoted string literal.
-   *                          <li> The __CLASS__ or __TRAIT__ magical constant.
-   *                          <li> Name of a class specified by the ::class resolution operator.
-   *                          </ul>
-   *                          When a class name is given, backslashes will be translated to forward slashes to
-   *                          construct the namespace as in RequireJS.
-   *
-   * @deprecated Use {@see jsAdmSetMain} instead.
-   */
-  public function jsAdmSetPageSpecificMain(string $location): void;
-
-  //--------------------------------------------------------------------------------------------------------------------
-  /**
    * Adds a meta element to this page.
    *
    * @param array $attributes The attributes of the meta element.
